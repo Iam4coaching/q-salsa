@@ -3,7 +3,6 @@
 
 <template>
     <div>
-        <p>About page</p>
+        <NuxtPage />
     </div>
-    
 </template>

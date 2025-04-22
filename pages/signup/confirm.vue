@@ -3,7 +3,6 @@
 
 <template>
     <div>
-        <p>About page</p>
+        <H1 >you signed the form</H1>
     </div>
-    
 </template>
