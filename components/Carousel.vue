@@ -20,6 +20,6 @@ const items = [
   >
   <img 
   :src="item" 
-  class="h-lvh w-full">
+  class="h-dvh w-full">
   </UCarousel>
 </template>

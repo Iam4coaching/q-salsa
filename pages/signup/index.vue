@@ -3,7 +3,7 @@
 
 <template>
     <div>
-        <p>About page</p>
+        <H1 >Signing up!</H1>
+        <P>Lorum ipsum</P>
     </div>
-    
 </template>
