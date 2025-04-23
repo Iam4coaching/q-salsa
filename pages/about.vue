@@ -3,7 +3,7 @@
 
 <template>
     <div>
-        <p>About page</p>
+        <ContentDoc/>
     </div>
     
 </template>

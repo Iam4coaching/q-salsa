@@ -1,9 +1,23 @@
 <script lang="ts">
+const { data } = await useFetch('/api/data')
+
+async function handleFormSubmit() {
+  const res = await $fetch('/api/submit', {
+    method: 'POST',
+    body: {
+      // My form data
+    }
+  })
+}
 </script>
 
 <template>
-    <div>
-        <H1 >Signing up!</H1>
-        <P>Lorum ipsum</P>
-    </div>
+  <div v-if="data == null">
+    No data
+  </div>
+  <div v-else>
+    <form @submit="handleFormSubmit">
+      <!-- form input tags -->
+    </form>
+  </div>
 </template>
