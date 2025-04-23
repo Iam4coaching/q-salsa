@@ -1,5 +1,7 @@
-<script setup lang="ts">
-const items = [
+<script lang="ts">
+
+
+const photos = [
   'https://picsum.photos/640/640?random=1',
   'https://picsum.photos/640/640?random=2',
   'https://picsum.photos/640/640?random=3',
@@ -7,19 +9,11 @@ const items = [
   'https://picsum.photos/640/640?random=5',
   'https://picsum.photos/640/640?random=6'
 ]
+
 </script>
 
 <template>
-  <UCarousel
-  v-slot="{ item }"
-  class="h-lvh w-full z-0 "
-  :autoplay="{ delay: 2000 }"
-  :items="items"
-  loop
-  fade
-  >
-  <img 
-  :src="item" 
-  class="object-contain md:object-cover z-0 ">
-  </UCarousel>
+      <div>
+        <img class="h-auto max-w-full rounded-lg" src="{image}" alt="">
+    </div>
 </template>
