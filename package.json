@@ -23,5 +23,8 @@
     "vue-json-excel": "^0.3.0",
     "vue-json-excel3": "^1.0.30",
     "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }
