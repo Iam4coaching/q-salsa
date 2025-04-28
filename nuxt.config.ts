@@ -27,4 +27,5 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
   ]
+  
 })
