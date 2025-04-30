@@ -16,16 +16,20 @@ const items = [
   :items="items"
   loop
   fade
+  class="carousel"
   >
   <img 
-  :src="item" 
-  class="h-screen w-full bg-cover bg-no-repeat -mb-112">
-  <div class="w-400 h-400 absolute top-25 left-1000 text-xl bg-[#3E7B08] text-[#ffffff] rounded-lg p-10">
-    <P>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
+  :src="item" >
+  <div>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex<br>
       ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</P>
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
   </div>
   </UCarousel>
 </template>
+
+<style lang="scss" scoped>
+
+</style>

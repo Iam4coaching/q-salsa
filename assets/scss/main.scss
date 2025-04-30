@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    font-family: 'Kanit', sans-serif
+}
+
+.flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .fixed {
+    position: fixed;
+  }
+  
+  .bg-gradient-to-tr {
+    background-image: linear-gradient(to top right, white, #d1fae5);
+  }
+
+//Styling for the main navigation header
+header {
+    height: 100%;
+    background-color: #3E7B08;
+
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    margin: 0;
+  
+    .flex-container {
+      display: flex;
+      padding: auto;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+      h1 {
+        font-weight: bold;
+        font-size: 3rem; // text-7xl
+        height: 100%;
+        justify-content: center;
+        white-space: nowrap;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #FCA5A1, #86EFAC, #A78BFA); // from-red-300 via-green-300 to-purple-500
+        
+        a {
+        padding: 10px; 
+        text-decoration: none;
+        color: inherit; // Links inherit the button color
+        }
+        @media (max-width: 640px) { // sm:px-6
+          //display: none;
+        }
+    }
+  
+    .button-group {
+      display: flex;
+      flex-direction: row;
+  
+      button {
+        font-size: 16px;
+        border: none;
+        height: 100%;
+        background-color:#3E7B08;
+        color: #ffffff;
+        justify-content: center;
+        transition: background-color 0.3s;
+        padding: 15px 32px;
+
+        a{
+            text-decoration: none;
+            color: inherit; // Links inherit the button color
+        }
+        &:hover {
+          background-color: #58AA0E;
+        }
+  
+        &.mr-20 {
+          margin-right: 5rem; // Assuming a specific margin for the last button
+        }
+      }
+    }
+    
+//styling for the carousel
+carousel{
+  display:flex;
+  width:full;
+};
+  .carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 150px;
+    background: linear-gradient(to right, #f56565, #68d391, #805ad5);
+    position: sticky;
+    bottom: 0;
+  }
+
+  .logo-container {
+    position: absolute;
+    top: -150px;
+    margin-left: 12px;
+  }
+
+  .check-button {
+    font-weight: bold;
+    margin-right: 30px;
+    padding: 12px 12px;
+    font-size: 6rem;
+    height: 100%;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+  }
+
+  footer {
+    height: 100%;
+    background-color: #3E7B08;
+    margin-top: auto;
+  
+    .container {
+        margin: 0;
+      max-width: 1280px; // max-w-screen-xl
+      padding-left: 1rem; // px-4
+      padding-right: 1rem; // px-4
+      padding-top: 4rem; // pt-16
+      padding-bottom: 1.5rem; // pb-6
+  
+      @media (min-width: 640px) { // sm:px-6
+        padding-left: 1.5rem; // sm:px-6
+        padding-right: 1.5rem; // sm:px-6
+      }
+  
+      @media (min-width: 1024px) { // lg:px-8 lg:pt-24
+        padding-left: 2rem; // lg:px-8
+        padding-right: 2rem; // lg:px-8
+        padding-top: 6rem; // lg:pt-24
+      }
+    }
+  }
+}
+    

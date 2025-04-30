@@ -3,9 +3,12 @@ const route = useRoute()
 </script>
 
 <template>
-    <div class="global-container grid h-screen">
-      <Header/>
-      <slot />
-      <div class="h-full w-full fixed inset-0 bg-gradient-to-tr from-white to-green-100 z-[-1] " />
-    </div>
-  </template>
+  <div class="default-grid-container">
+    <Header class="header"/>
+    <slot/>
+    <div class="body"/>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+</style>

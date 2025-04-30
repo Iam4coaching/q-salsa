@@ -1,0 +1,33 @@
+// variables
+$font-stack: 'Kanit', sans-serif;
+$mainG: #3E7B08;
+$hoverG: #58AA0E;
+
+/*
+* Variables for breakpoints
+*/
+$mobile-landscape: 568px;
+$tablet: 768px;
+$desktop: 992px;
+
+/*
+* Map for breakpoints
+*/
+$breakpoints: (
+  "small": (
+    min-width: $mobile-landscape,
+  ),
+  "medium": (
+    min-width: $tablet,
+  ),
+  "large": (
+    min-width: $desktop,
+  ),
+); 
+@mixin responsive($size) {
+  $query: map-get($breakpoints, $size);
+
+    @media #{$query} {
+      @content;
+  }
+}

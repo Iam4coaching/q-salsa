@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -8,15 +7,22 @@ export default defineNuxtConfig({
       path: '~/components',
       pathPrefix: false,    },
     ],
-  css: ['~/assets/css/main.css'],
+    css: [
+      // SCSS file in the project
+      '@/assets/scss/main.scss'
+    ],
   image: {
     format: ['png'],
     dir: 'assets/Images',
 },
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/assets/scss/_vars.scss" as * ;',
+        },
+      },
+    },
   },
 
   modules: [
