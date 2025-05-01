@@ -5,15 +5,16 @@ definePageMeta({
 </script>
 
 <template>
-    <div>
+    <main>
+      <img src="/Images/Qsalsa_Logo.png" alt="Qsalsa Logo" class="main-logo">
+    </main>
     <Carousel/>
         
-    <div class="carousel-container">
-         <div>
-          <img src="/Images/Qsalsa_Logo.png" height="600" width="600" alt="Qsalsa Logo">
-         </div>
-         
+    <div class="footer">
+          <img src="/Images/Qsalsa_Logo.png"  alt="Qsalsa Logo" class="footer-logo">
          <button >Check it out</button>
     </div>
-    </div>
+
 </template>
+<style lang="scss" scoped>
+</style>

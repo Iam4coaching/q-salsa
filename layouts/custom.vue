@@ -3,10 +3,10 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="default-grid-container">
+  <div class="body">
     <Header class="header"/>
     <slot/>
-    <div class="body"/>
+    <div class="main"/>
   </div>
 </template>
 

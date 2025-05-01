@@ -4,13 +4,13 @@
 <template>
     <header>
         <div >
-            <h1>    
+            <h1 class="Logo-icon">    
               <NuxtLink to="/">
                     Q-SALSA
                 </NuxtLink>
               </h1>
         </div>
-    <div class="button-group" >
+    <nav >
             <button >
                 <NuxtLink to="/gallery">
                     Gallery
@@ -27,7 +27,7 @@
                 </NuxtLink>
             </button>
             <button>Sign up</button>
-    </div>
+        </nav>
     </header>
 </template>
 

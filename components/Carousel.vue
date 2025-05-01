@@ -16,17 +16,10 @@ const items = [
   :items="items"
   loop
   fade
-  class="carousel"
+
   >
   <img 
-  :src="item" >
-  <div>
-    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br>
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex<br>
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-  </div>
+  :src="item" class="carousel">
   </UCarousel>
 </template>
 

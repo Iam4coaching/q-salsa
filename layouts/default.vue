@@ -3,11 +3,12 @@ const route = useRoute()
 </script>
 
 <template>
-    <div>
-      <Header/>
-      <slot />
-    </div>
-    <Footer/>
+  <div class="body">
+    <Header class="header"/>
+    <slot/>
+    <div class="main"/>
+  </div>
+    <Footer class="footer"/>
   </template>
 
 <style lang="scss" scoped>

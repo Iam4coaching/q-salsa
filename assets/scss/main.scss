@@ -1,48 +1,197 @@
+// Variables
+$header-bg: #407f00;
+$hover-color: #58AA0E;
+$nav-link-color: white;
+$mobile-breakpoint: 768px;
+
 * {
-    margin: 0;
-    font-family: 'Kanit', sans-serif
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.flex {
+body, html {
+  font-family: 'Kanit', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background-image: linear-gradient(to top right, white, #d1fae5);
+}
+
+header {
+  background-color: $header-bg;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  width: 100%;
+
+  .logo-icon {
+    height: 50px;
+    display: block;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  nav {
     display: flex;
+    gap: 1rem;
+
+    button {
+      border: none;
+      height: 100%;
+      background-color: #3E7B08;
+      justify-content: center;
+      transition: background-color 0.3s;
+      padding: 15px 32px;
+      background-color: $header-bg;
+      color: $nav-link-color;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      a {
+          text-decoration: none;
+          color: inherit; // Links inherit the button color
+        }
+        
+       &:hover {
+            background-color:$hover-color;
+       }
+
+      @media (max-width: $mobile-breakpoint) {
+        font-size: 0.875rem;
+      }
+    }
   }
-  
-  .flex-col {
-    flex-direction: column;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .carousel {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
   }
-  
-  .min-h-screen {
-    min-height: 100vh;
+
+  .main-logo {
+    display: none;
+    margin: 1rem auto;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: block;
+      width: 80%;
+      height: 80%;
+    }
   }
-  
-  .fixed {
-    position: fixed;
+
+  .overlay-text {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 2rem;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
   }
-  
-  .bg-gradient-to-tr {
-    background-image: linear-gradient(to top right, white, #d1fae5);
+}
+
+footer {
+  background: linear-gradient(to right, #f66, #66f);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .footer-logo {
+    width: 100%;
+    height: 100%;
+        @media (min-width: $mobile-breakpoint) {
+            display: none;
+          }
   }
+}
+
+/*
+* {
+    margin: 0;
+    font-family: 'Kanit', sans-serif;
+}
+//main body styling
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to top right, white, #d1fae5);
+}
+
 
 //Styling for the main navigation header
 header {
-    height: 100%;
-    background-color: #3E7B08;
+  height: 100%;
+  max-width: 100vh;
+  background-color: #3E7B08;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  margin: 0;
 
-    color: white;
+  .flex-container {
     display: flex;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    margin: 0;
-  
-    .flex-container {
-      display: flex;
-      padding: auto;
-      flex-direction: row;
-      align-items: flex-start;
+    padding: auto;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  h1 {
+      display: none
     }
-      h1 {
+  }
+  .button-group {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      font-size: 16px;
+      border: none;
+      height: 100%;
+      background-color: #3E7B08;
+      color: #ffffff;
+      justify-content: center;
+      transition: background-color 0.3s;
+      padding: 15px 32px;
+
+      a {
+        text-decoration: none;
+        color: inherit; // Links inherit the button color
+      }
+
+      &:hover {
+        background-color: #58AA0E;
+      }
+
+      &.mr-20 {
+        margin-right: 5rem; // Assuming a specific margin for the last button
+      }
+    }
+  }
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  header{
+    h1 {
         font-weight: bold;
         font-size: 3rem; // text-7xl
         height: 100%;
@@ -51,49 +200,25 @@ header {
         color: transparent;
         background-clip: text;
         background-image: linear-gradient(to right, #FCA5A1, #86EFAC, #A78BFA); // from-red-300 via-green-300 to-purple-500
-        
+    
         a {
-        padding: 10px; 
-        text-decoration: none;
-        color: inherit; // Links inherit the button color
-        }
-        @media (max-width: 640px) { // sm:px-6
-          //display: none;
-        }
-    }
-  
-    .button-group {
-      display: flex;
-      flex-direction: row;
-  
-      button {
-        font-size: 16px;
-        border: none;
-        height: 100%;
-        background-color:#3E7B08;
-        color: #ffffff;
-        justify-content: center;
-        transition: background-color 0.3s;
-        padding: 15px 32px;
-
-        a{
-            text-decoration: none;
-            color: inherit; // Links inherit the button color
-        }
-        &:hover {
-          background-color: #58AA0E;
-        }
-  
-        &.mr-20 {
-          margin-right: 5rem; // Assuming a specific margin for the last button
+          padding: 10px;
+          text-decoration: none;
+          color: inherit; // Links inherit the button color
         }
       }
-    }
-    
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
 //styling for the carousel
 carousel{
   display:flex;
-  width:full;
+  width:100%;
+  height: auto;
 };
   .carousel-container {
     display: flex;
@@ -147,5 +272,6 @@ carousel{
       }
     }
   }
-}
-    
+
+
+    */
