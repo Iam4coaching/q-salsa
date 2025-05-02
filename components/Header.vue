@@ -1,4 +1,22 @@
-<script lang="ts">
+<script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui'
+
+const items = ref([
+  {
+    label: 'Gallery', to:'/gallery',
+    class: 'dropmenuitem',
+  },
+  {
+    label: 'Pricing', to:'/pricing',
+    class: 'dropmenuitem',
+   
+  },
+  {
+    label: 'Events', to:'/events',
+    class: 'dropmenuitem',
+  },
+  ] satisfies DropdownMenuItem[]);
+
 </script>
 
 <template>
@@ -8,9 +26,26 @@
               <NuxtLink to="/">
                     Q-SALSA
                 </NuxtLink>
-              </h1>
-        </div>
-    <nav >
+              </h1>    
+ 
+</div>
+<UDropdownMenu
+    :items="items"
+    :content="{
+    align: 'center',
+    sideOffset: 8,
+    side: 'bottom',
+    collisionPadding: 8,
+
+    }"
+    :ui="{
+
+    }"
+    class="my-dropdown"
+>
+    <UButton size="xl" icon="prime-align-justify" />
+</UDropdownMenu>
+<nav >
             <button >
                 <NuxtLink to="/gallery">
                     Gallery
@@ -26,7 +61,6 @@
                     Contact
                 </NuxtLink>
             </button>
-            <button>Sign up</button>
         </nav>
     </header>
 </template>

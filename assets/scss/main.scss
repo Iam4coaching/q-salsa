@@ -10,14 +10,17 @@ $mobile-breakpoint: 768px;
   box-sizing: border-box;
 }
 
+
 body, html {
   font-family: 'Kanit', sans-serif;
   height: 100%;
-  width: 100%;
-  overflow-x: hidden;
+  width:100%;
+  margin: 0;
+  padding: 0;
   background-image: linear-gradient(to top right, white, #d1fae5);
 }
 
+////CSS for the header
 header {
   background-color: $header-bg;
   display: flex;
@@ -25,27 +28,88 @@ header {
   align-items: center;
   padding: 0.75rem 1rem;
   width: 100%;
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 3rem; // text-7xl
+    height: 100%;
+    justify-content: center;
+    white-space: nowrap;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #FCA5A1, #86EFAC, #A78BFA); // from-red-300 via-green-300 to-purple-500
 
-  .logo-icon {
-    height: 50px;
-    display: block;
+    a {
+      padding: 10px;
+      text-decoration: none;
+      color: inherit; // Links inherit the button color
+    }
 
-    @media (max-width: $mobile-breakpoint) {
+      @media (max-width: $mobile-breakpoint) {
       display: none;
+    }
+  }
+  }
+  
+  .my-dropdown {
+    // Wrapper styles
+    display: none;
+
+    @media (max-width: $mobile-breakpoint){
+      background-color: $header-bg;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      flex-direction: column;
+      text-decoration: none;
+      border: none;
+      color: white;
+      &:hover {
+        background-color:$hover-color;
+        }
+
+      .dropmenuitem{
+      width: 100%;
+      height:auto;
+      display:flex;
+      flex-direction: column;
+      text-decoration: none;
+      border: none;
+ 
+      size: 24px;
+      justify-content: center;
+      a{
+        text-decoration: none;
+        background-color:$header-bg;
+        color: white;
+      }
+      &:hover {
+        background-color:$hover-color;
+        }
+      }
     }
   }
 
   nav {
     display: flex;
     gap: 1rem;
-
+    width: 100%;
+    @media (max-width: $mobile-breakpoint) {
+        display:none;
+      }
     button {
       border: none;
       height: 100%;
       background-color: #3E7B08;
       justify-content: center;
       transition: background-color 0.3s;
-      padding: 15px 32px;
+      padding: 0;
+      margin: 0;
       background-color: $header-bg;
       color: $nav-link-color;
       text-decoration: none;
@@ -60,27 +124,17 @@ header {
             background-color:$hover-color;
        }
 
-      @media (max-width: $mobile-breakpoint) {
-        font-size: 0.875rem;
-      }
+     
     }
   }
-}
 
+//home page
 main {
   position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  .carousel {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    position: absolute;
-    z-index: -1;
-  }
 
   .main-logo {
     display: none;
@@ -107,22 +161,156 @@ main {
   }
 }
 
-footer {
-  background: linear-gradient(to right, #f66, #66f);
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  .footer-logo {
+.background-carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-        @media (min-width: $mobile-breakpoint) {
-            display: none;
-          }
+
+    // Make Embla carousel container full height
+    .embla {
+      height: 100%;
+    }
+
+    // Embla slide container
+    .embla__slide {
+      height: 100%;
+    }
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .content-overlay {
+    position: relative;
+    z-index: 10;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+    }
+    .main-logo {
+      display: none;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+      .main-logo {
+        display: block;
+        width: 80%;
+        height: 80%;
+      }
+    }
   }
 }
 
+.home-footer{
+  bottom:0;
+  position: sticky;
+  align-items: center;
+  padding: 30px;
+  z-index: 0;
+  width: 100%;
+  display: block;
+  flex-direction: row;
+  height: 10rem;
+  background: linear-gradient(to right, #f56565, #68d391, #805ad5);
+
+  h1{
+    margin:auto;
+    justify-content: center;
+    white-space: nowrap;
+    color: transparent;
+      a {
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 30px;
+      padding: 12px 12px;
+      font-size: 3rem;
+      height: 100%;
+      color: #ffffff;
+      position: absolute;
+      right: 0;
+      }
+  }
+}
+
+
+.footer-logo {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 452px;
+  display: block;
+  height: 30%;
+
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+//CSS for Footer
+footer {
+  background: $header-bg;
+  padding: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+    @media (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+    }
+  }
+
+  //CSS for Gallery
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
+
+    .gallery-div{
+      flex: 25%
+    }
+    .gallery.div img{
+      height:auto;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      gallery.div{
+        flex: 100%;
+      }
+    }
+
+  }
 /*
 * {
     margin: 0;

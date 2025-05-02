@@ -3,7 +3,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="body">
+  <div class="home-page">
     <Header class="header"/>
     <slot/>
     <div class="main"/>
@@ -11,4 +11,10 @@ const route = useRoute()
 </template>
 
 <style lang="scss" scoped>
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; // Prevents scroll
+  position: relative;
+}
 </style>

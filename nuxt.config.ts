@@ -39,6 +39,12 @@ export default defineNuxtConfig({
     },
   },
 
+  ui: {
+    theme: {
+      colors: ['primary', 'secondary', 'info', 'success', 'warning', 'error', 'neutral', 'white','green']
+    }
+  },
+
   modules: [
     '@nuxt/image',
     '@nuxt/content',

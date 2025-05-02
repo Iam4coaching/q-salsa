@@ -12,10 +12,10 @@ const photos = ref([
 </script>
 
 <template>
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-10 content-normal p-10">
-    <div v-for="photo in photos" :key="photo.url" class="m-10">
+  <div class="gallery">
+    <div v-for="photo in photos" :key="photo.url" class="gallery-div">
       <img
-        class="h-400 w-400 rounded-lg"
+        class="gallery-image"
         :src="photo.url"
         :alt="photo.alt"
       />
