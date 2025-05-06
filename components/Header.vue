@@ -3,17 +3,13 @@ import type { DropdownMenuItem } from '@nuxt/ui'
 
 const items = ref([
   {
-    label: 'Gallery', to:'/gallery',
-    class: 'dropmenuitem',
+    label: 'Gallery', to:'/gallery', color:'primary',
   },
   {
     label: 'Pricing', to:'/pricing',
-    class: 'dropmenuitem',
-   
   },
   {
     label: 'Events', to:'/events',
-    class: 'dropmenuitem',
   },
   ] satisfies DropdownMenuItem[]);
 
@@ -33,17 +29,17 @@ const items = ref([
     :items="items"
     :content="{
     align: 'center',
-    sideOffset: 8,
     side: 'bottom',
-    collisionPadding: 8,
-
+    sideOffset: 8,
+    collisionPadding:8
     }"
     :ui="{
-
+        content: 'w-48',
+        item: 'custom-dropdown-item',
     }"
     class="my-dropdown"
 >
-    <UButton size="xl" icon="prime-align-justify" />
+    <UButton class="dropmenuitem" size="xl" icon="prime-align-justify" />
 </UDropdownMenu>
 <nav >
             <button >
@@ -66,4 +62,16 @@ const items = ref([
 </template>
 
 <style lang="scss" scoped>
+   // variant
+   .menu-item{
+    width:full;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+     &--primary {
+        background-color: #0e34cd;
+        color: #ffffff;
+    }
+   }
+  
 </style>

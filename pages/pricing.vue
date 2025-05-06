@@ -1,13 +1,74 @@
 <template>
-    <div class="h-full flex flex-row-reverse justify-normal items-start space-x-10">
-        <div class="m-10 p-8">
-           <h1 class="text-6xl p-4">Pricing</h1>
-           <p class="m-5 p-4 text-lg"></p>
-        </div>
-        
-        <div class="h-800 w-920 rounded-br-5xl absolute -top-0 -left-10 bg-[url('https://picsum.photos/640/640?random=3')] bg-cover">
-
-        </div>
-    </div>
-    
-</template>
+    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+      <UFormGroup label="Name" name="name">
+        <UInput v-model="state.name" />
+      </UFormGroup>
+  
+      <UFormGroup label="Email" name="email">
+        <UInput v-model="state.email" />
+      </UFormGroup>
+  
+      <UFormGroup label="Message" name="message">
+        <UTextarea v-model="state.message" type="text" />
+      </UFormGroup>
+  
+      <UButton type="submit"> Submit </UButton>
+    </UForm>
+  </template>
+  
+  <script setup>
+  import { z } from "zod";
+  
+  const schema = z.object({
+    name: z.string().min(2, "Must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    message: z.string().min(10, "Must be at least 10 characters"),
+    subject: z.string().min("Subject required"),
+    access_key: z.string().min("Access key is required"),
+  });
+  
+  const state = reactive({
+    access_key: "YOUR_ACCESS_KEY_HERE",
+    subject: "New Submission from Web3Forms",
+    name: "",
+    email: "",
+    message: "",
+  });
+  
+  async function onSubmit(event) {
+    result.value = "Please wait...";
+    try {
+      const response = await $fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: form.value,
+      });
+  
+      console.log(response); // You can remove this line if you don't need it
+  
+      result.value = response.message;
+  
+      if (response.status === 200) {
+        status.value = "success";
+      } else {
+        console.log(response); // Log for debugging, can be removed
+        status.value = "error";
+      }
+    } catch (error) {
+      console.log(error); // Log for debugging, can be removed
+      status.value = "error";
+      result.value = "Something went wrong!";
+    } finally {
+      // Reset form after submission
+      form.value.name = "";
+      form.value.email = "";
+      form.value.message = "";
+  
+      // Clear result and status after 5 seconds
+      setTimeout(() => {
+        result.value = "";
+        status.value = "";
+      }, 5000);
+    }
+  }
+  </script>
