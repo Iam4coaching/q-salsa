@@ -1,8 +1,8 @@
 <template>
-    <img src="/Images/Qsalsa_Logo.png"  alt="Qsalsa Logo" class="footer-logo">
+    <img src="/Images/Qsalsa_Logo.png"  alt="Qsalsa Logo" class="footer-logo animate__animated animate__fadeInLeft">
         <div class="home-footer">
             <h1 class="check-button">    
-              <NuxtLink to="/">
+              <NuxtLink to="/pricing">
                     Check out now
                 </NuxtLink>
               </h1>

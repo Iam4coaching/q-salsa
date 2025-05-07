@@ -22,6 +22,7 @@ export default defineNuxtConfig({
       pathPrefix: false,    },
     ],
     css: [
+      'animate.css/animate.min.css',
       // SCSS file in the project
       '@/assets/scss/main.scss'
     ],
