@@ -1,0 +1,466 @@
+// Variables
+$header-bg: #407f00;
+$hover-color: #58AA0E;
+$nav-link-color: white;
+$mobile-breakpoint: 768px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body, html {
+  font-family: 'Kanit', sans-serif;
+  height: 100%;
+  width:100%;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to top right, white, #d1fae5);
+  position: relative;
+  z-index: auto
+}
+
+////CSS for the header
+header {
+  z-index: 9999;
+  background-color: $header-bg;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  height: 6rem;
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-weight: bold;
+    font-size: 3rem; // text-7xl
+    height: 100%;
+    justify-content: center;
+    white-space: nowrap;
+    color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(to right, #FCA5A1, #86EFAC, #A78BFA); // from-red-300 via-green-300 to-purple-500
+
+    a {
+      padding: 10px;
+      color: inherit; // Links inherit the button color
+    }
+
+      @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+  }
+  
+  nav {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    height:full;
+    padding: 0.75rem 1rem;
+    @media (max-width: $mobile-breakpoint) {
+      gap: 1rem;
+      width: 100%;
+      }
+    button {
+      border: none;
+      height: 100%;
+      background-color: #3E7B08;
+      justify-content: center;
+      transition: background-color 0.3s;
+      padding: 0;
+      margin: 0;
+      background-color: $header-bg;
+      color: $nav-link-color;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      a {
+          text-decoration: none;
+          color: inherit; // Links inherit the button color
+        }
+        
+       &:hover {
+            background-color:$hover-color;
+       }
+
+     
+    }
+  }
+
+//home page
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .main-logo {
+    display: none;
+    margin: 1rem auto;
+
+    @media (max-width: $mobile-breakpoint) {
+      z-index: 5;
+      display: block;
+      width: 80%;
+      height: 80%;
+    }
+  }
+
+  .overlay-text {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 2rem;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
+  }
+  
+}
+
+
+.background-carousel {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+
+  .carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: full;
+
+    // Make Embla carousel container full height
+    .embla {
+      height: full;
+    }
+
+    // Embla slide container
+    .embla__slide {
+      height: full;
+    }
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.8s ease;
+    z-index: 1;
+  }
+  .carousel .embla__slide {
+    position: relative;
+    height: 100vh;
+  }
+  .content-overlay {
+    position: relative;
+    z-index: 10;
+    color: $header-bg;
+    text-align: center;
+    padding: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+
+    }
+
+    p {
+
+      font-size: 1.25rem;
+    }
+    .main-logo {
+      display: none;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+      .main-logo {
+        display: block;
+        width: 80%;
+        height: 80%;
+      }
+    }
+  }
+}
+
+.home-footer{
+  bottom:0;
+  position: sticky;
+  align-items: center;
+  padding: 30px;
+  z-index: 0;
+  width: 100%;
+  display: block;
+  flex-direction: row;
+  height: 10rem;
+  background: linear-gradient(to right, #f56565, #68d391, #805ad5);
+
+  h1{
+    margin:auto;
+    justify-content: center;
+    white-space: nowrap;
+    color: transparent;
+      a {
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 30px;
+      padding: 12px 12px;
+      font-size: 3rem;
+      height: 100%;
+      color: #ffffff;
+      position: absolute;
+      right: 0;
+      }
+  }
+}
+
+
+.footer-logo {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 452px;
+  display: block;
+  height: 30%;
+
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+//CSS for Footer
+footer {
+  padding: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color:white;
+  background-color: $hover-color;
+  margin:0;
+  
+  .footer-logo-small{
+    display: block;
+    height: 30%;
+    width: 30%;
+  }
+  .socials{
+    Icon{
+      size: 2rem;
+    }
+    
+
+  }
+    @media (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      padding: 5%;
+      .footer-logo-small{
+        display: block;
+        height: 50%;
+        width: 50%;
+      }
+    }
+  }
+
+  //CSS for Gallery
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
+
+    .gallery-div{
+      flex: 25%
+    }
+    .gallery.div img{
+      height:auto;
+      width:100%;
+      max-width: 400px;
+
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      gallery.div{
+        flex: 100%;
+      }
+    }
+
+  }
+/*
+* {
+    margin: 0;
+    font-family: 'Kanit', sans-serif;
+}
+//main body styling
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to top right, white, #d1fae5);
+}
+
+
+//Styling for the main navigation header
+header {
+  height: 100%;
+  max-width: 100vh;
+  background-color: #3E7B08;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  margin: 0;
+
+  .flex-container {
+    display: flex;
+    padding: auto;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  h1 {
+      display: none
+    }
+  }
+  .button-group {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      font-size: 16px;
+      border: none;
+      height: 100%;
+      background-color: #3E7B08;
+      color: #ffffff;
+      justify-content: center;
+      transition: background-color 0.3s;
+      padding: 15px 32px;
+
+      a {
+        text-decoration: none;
+        color: inherit; // Links inherit the button color
+      }
+
+      &:hover {
+        background-color: #58AA0E;
+      }
+
+      &.mr-20 {
+        margin-right: 5rem; // Assuming a specific margin for the last button
+      }
+    }
+  }
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  header{
+    h1 {
+        font-weight: bold;
+        font-size: 3rem; // text-7xl
+        height: 100%;
+        justify-content: center;
+        white-space: nowrap;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #FCA5A1, #86EFAC, #A78BFA); // from-red-300 via-green-300 to-purple-500
+    
+        a {
+          padding: 10px;
+          text-decoration: none;
+          color: inherit; // Links inherit the button color
+        }
+      }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+//styling for the carousel
+carousel{
+  display:flex;
+  width:100%;
+  height: auto;
+};
+  .carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 150px;
+    background: linear-gradient(to right, #f56565, #68d391, #805ad5);
+    position: sticky;
+    bottom: 0;
+  }
+
+  .logo-container {
+    position: absolute;
+    top: -150px;
+    margin-left: 12px;
+  }
+
+  .check-button {
+    font-weight: bold;
+    margin-right: 30px;
+    padding: 12px 12px;
+    font-size: 6rem;
+    height: 100%;
+    color: #ffffff;
+    position: absolute;
+    right: 0;
+  }
+
+  footer {
+    height: 100%;
+    background-color: #3E7B08;
+    margin-top: auto;
+  
+    .container {
+        margin: 0;
+      max-width: 1280px; // max-w-screen-xl
+      padding-left: 1rem; // px-4
+      padding-right: 1rem; // px-4
+      padding-top: 4rem; // pt-16
+      padding-bottom: 1.5rem; // pb-6
+  
+      @media (min-width: 640px) { // sm:px-6
+        padding-left: 1.5rem; // sm:px-6
+        padding-right: 1.5rem; // sm:px-6
+      }
+  
+      @media (min-width: 1024px) { // lg:px-8 lg:pt-24
+        padding-left: 2rem; // lg:px-8
+        padding-right: 2rem; // lg:px-8
+        padding-top: 6rem; // lg:pt-24
+      }
+    }
+  }
+
+
+    */
