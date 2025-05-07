@@ -6,7 +6,6 @@ const route = useRoute()
   <div class="home-page">
     <Header class="header"/>
     <slot/>
-    <div class="main"/>
   </div>
 </template>
 

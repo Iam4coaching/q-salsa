@@ -11,6 +11,11 @@ const route = useRoute()
     <Footer class="footer"/>
   </template>
 
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
+.body {
+  width: 100vw;
+  overflow: hidden; // Prevents scroll
+  position: relative;
+}
 </style>

@@ -18,16 +18,20 @@ body, html {
   margin: 0;
   padding: 0;
   background-image: linear-gradient(to top right, white, #d1fae5);
+  position: relative;
+  z-index: auto
 }
 
 ////CSS for the header
 header {
+  z-index: 9999;
   background-color: $header-bg;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
   width: 100%;
+  height: 6rem;
   @media (max-width: $mobile-breakpoint) {
     padding: 0;
     margin: 0;
@@ -53,70 +57,15 @@ header {
   }
   }
   
-  .custom-dropdown-item{
-    display:none;
-    @media (max-width: $mobile-breakpoint){
-      position:absolute;
-      display:flex;
-      z-index: 10;
-      justify-content: center;
-      padding: 0.75rem 1rem;
-      margin: 0;
-      width: 100vw;
-      height: 3rem;
-      color: white;
-      background-color: $header-bg;
-      position: relative;
-      text-decoration: none;
-      &:hover {
-        background-color: $hover-color;
-      }
-    }
-  }
-  
-  .my-dropdown {
-    // Wrapper styles
-    display: none;
-    @media (max-width: $mobile-breakpoint){
-      background-color: $header-bg;
-      display: flex;
-      justify-content: center;
-      width: 100vw;
-      height: 6rem;
-      margin: 0;
-      flex-direction: column;
-      border: none;
-      color: white;
-      
-      span {
-        height: 4rem;
-        width: full;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        display:flex;
-        flex-direction: column;
-        background-color:white;
-        size: 15px;
-        justify-content: center;
-      a{
-        background-color:$header-bg;
-        color: white;
-      }
-      &:hover {
-        background-color:$hover-color;
-        }
-      }
-      
-    }
-  }
-
   nav {
     display: flex;
     gap: 1rem;
     width: 100%;
+    height:full;
+    padding: 0.75rem 1rem;
     @media (max-width: $mobile-breakpoint) {
-        display:none;
+      gap: 1rem;
+      width: 100%;
       }
     button {
       border: none;
@@ -184,7 +133,7 @@ main {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 
   .carousel {
     position: absolute;
@@ -206,23 +155,33 @@ main {
 
   .carousel-image {
     width: 100%;
-    height: full;
+    height: 100vh;
     object-fit: cover;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.8s ease;
+    z-index: 1;
   }
-
+  .carousel .embla__slide {
+    position: relative;
+    height: 100vh;
+  }
   .content-overlay {
     position: relative;
     z-index: 10;
-    color: white;
+    color: $header-bg;
     text-align: center;
     padding: 2rem;
 
     h1 {
       font-size: 2.5rem;
+
     }
 
     p {
+
       font-size: 1.25rem;
     }
     .main-logo {
@@ -293,14 +252,35 @@ main {
 
 //CSS for Footer
 footer {
-  background: $header-bg;
-  padding: 5rem;
+  padding: 3%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color:white;
+  background-color: $hover-color;
+  margin:0;
+  
+  .footer-logo-small{
+    display: block;
+    height: 30%;
+    width: 30%;
+  }
+  .socials{
+    Icon{
+      size: 2rem;
+    }
+    
+
+  }
     @media (max-width: $mobile-breakpoint) {
       flex-direction: column;
+      padding: 5%;
+      .footer-logo-small{
+        display: block;
+        height: 50%;
+        width: 50%;
+      }
     }
   }
 
