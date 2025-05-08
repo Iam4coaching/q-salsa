@@ -7,6 +7,13 @@ const items = [
   'https://picsum.photos/640/640?random=5',
   'https://picsum.photos/640/640?random=6',
 ]
+
+const { data: home } = await useAsyncData(() => queryCollection('content').path('/').first())
+
+useSeoMeta({
+  title: home.value?.title,
+  description: home.value?.description
+})
 </script>
 
 <template>
@@ -24,8 +31,8 @@ const items = [
 
     <div class="content-overlay animate__animated animate__slideInLeft">
       <img src="/Images/Qsalsa_Logo.png" alt="Qsalsa Logo" class="main-logo animate__animated animate__fadeInLeft">
-      <h1 >Welcome to My Site</h1>
-      <p>Responsive, fullscreen background carousel</p>
+      <ContentRenderer v-if="home" :value="home" />
+      <div v-else>Home not found</div>
     </div>
   </div>
 </template>

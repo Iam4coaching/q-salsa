@@ -1,3 +1,5 @@
+
+
 <template>    
 <div class="price-card">
     <div class="container animate__animated animate__fadeInDown">
