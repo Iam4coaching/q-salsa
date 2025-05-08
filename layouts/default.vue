@@ -3,8 +3,9 @@ const route = useRoute()
 </script>
 
 <template>
-  <div class="body">
-    <Header class="header"/>
+<Header class="header"/>
+  <div class="main-page">
+ 
     <slot/>
     <div class="main"/>
   </div>

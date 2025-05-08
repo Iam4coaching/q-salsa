@@ -22,9 +22,9 @@ const items = [
       <img :src="item" alt="Slide image" class="carousel-image" />
     </UCarousel>
 
-    <div class="content-overlay">
-      <img src="/Images/Qsalsa_Logo.png" alt="Qsalsa Logo" class="main-logo">
-      <h1>Welcome to My Site</h1>
+    <div class="content-overlay animate__animated animate__slideInLeft">
+      <img src="/Images/Qsalsa_Logo.png" alt="Qsalsa Logo" class="main-logo animate__animated animate__fadeInLeft">
+      <h1 >Welcome to My Site</h1>
       <p>Responsive, fullscreen background carousel</p>
     </div>
   </div>

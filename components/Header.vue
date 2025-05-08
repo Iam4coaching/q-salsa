@@ -13,18 +13,18 @@
             </div>
 <nav >
             <button >
-                <NuxtLink to="/gallery">
-                    Gallery
-                </NuxtLink>
-            </button>
-            <button >
                 <NuxtLink to="/pricing">
                     Pricing
                 </NuxtLink>
             </button>
+            <button >  
+                <NuxtLink to="/gallery">
+                    Gallery
+                </NuxtLink>
+            </button>
             <button>
-                <NuxtLink to="/contact">
-                    Contact
+                <NuxtLink to="/events">
+                    Events
                 </NuxtLink>
             </button>
         </nav>
