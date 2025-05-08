@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
    app: {
+    baseURL: 'https://iam4coaching.github.io/q-salsa/',
     head: {
        title: 'Q-Salsa', // default fallback title
       htmlAttrs: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: events } = await useAsyncData('blog', () => queryCollection('event').all())
+    const { event } = defineProps(['event']);
 </script>
 
 <template>    
