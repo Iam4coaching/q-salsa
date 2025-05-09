@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
   
@@ -17,6 +18,12 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     }
   },
+  collections: {
+    content: defineCollection({
+      type: 'page',
+      source: '**/*.md'
+    })
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   components: [
@@ -32,6 +39,7 @@ export default defineNuxtConfig({
     format: ['png'],
     dir: 'assets/Images',
 },
+
   vite: {
     plugins: [
       {

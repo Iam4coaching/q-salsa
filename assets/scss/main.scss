@@ -229,7 +229,7 @@ main {
   }
 }
 
-
+//CSSS for the homepage footer
 .home-footer{
   bottom:0;
   position: sticky;
@@ -277,7 +277,7 @@ main {
   }
 }
 
-//CSS for Footer
+//CSS for regular Footer
 footer {
   margin-top: auto;
   padding: 3%;
@@ -335,7 +335,7 @@ footer {
     }
 
   }
-
+//CSS for price card
   .pricing-page{
     display: flex;
     flex-direction: column;
@@ -364,9 +364,52 @@ footer {
     }
   }
 
-  //animation
+//CSS for form
+input{
+  width: 100%;
+  padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid $header-bg;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: 'Kanit';
+    font-size: large;
+    color:$header-bg;
+}
 
-  
+textarea{
+  width:100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid $header-bg;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Kanit';
+  font-size: large;
+  color: $header-bg;
+}
+
+.form-button{
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 1em;
+  background-color: #3E7B08;
+  justify-content: center;
+  transition: background-color 0.3s;
+  margin: 0;
+  background-color: $header-bg;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  &:hover{
+    background-color: $hover-color;
+  }
+}
+  //animation  
 @keyframes gradient {
   0% {
       background-position: 0% 50%;
