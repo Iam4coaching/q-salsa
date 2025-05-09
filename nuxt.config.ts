@@ -3,7 +3,7 @@ import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
    app: {
-    baseURL: '/q-salsa',
+    baseURL: '/q-salsa/',
     head: {
       title: 'Q-Salsa', // default fallback title
       htmlAttrs: {
