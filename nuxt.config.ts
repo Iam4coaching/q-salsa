@@ -2,6 +2,11 @@
 import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
+  nitro: {
+    output: {
+      publicDir: 'docs',
+    },
+  },
    app: {
     baseURL: '/q-salsa/',
     head: {
