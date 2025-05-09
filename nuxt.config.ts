@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
+  
    app: {
-    baseURL: 'https://iam4coaching.github.io/q-salsa/',
+    baseURL: '/q-salsa',
     head: {
-       title: 'Q-Salsa', // default fallback title
+      title: 'Q-Salsa', // default fallback title
       htmlAttrs: {
         lang: 'en',
       },
@@ -24,7 +26,6 @@ export default defineNuxtConfig({
     ],
     css: [
       'animate.css/animate.min.css',
-      // SCSS file in the project
       '@/assets/scss/main.scss'
     ],
   image: {
