@@ -2,7 +2,6 @@
 import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
-  
    app: {
     baseURL: '/q-salsa',
     head: {
@@ -14,17 +13,10 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       // update Nuxt defaults
-      charset: 'utf-16',
+      charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     }
   },
-  collections: {
-    content: defineCollection({
-      type: 'page',
-      source: '**/*.md'
-    })
-  },
-  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   components: [
     {
@@ -42,22 +34,6 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      {
-        name: "vite-plugin-ignore-sourcemap-warnings",
-        apply: "build",
-        configResolved(config) {
-          config.build.rollupOptions.onwarn = (warning, warn) => {
-            if (
-              warning.code === "SOURCEMAP_BROKEN" &&
-              warning.plugin === "@tailwindcss/vite:generate:build"
-            ) {
-              return;
-            }
-
-            warn(warning);
-          };
-        },
-      },
     ],
     css: {
       preprocessorOptions: {
@@ -75,12 +51,11 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxt/image',
     '@nuxt/content',
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/ui',
   ]
-  
+
 })

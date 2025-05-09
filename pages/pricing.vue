@@ -6,7 +6,7 @@
 <template>
   <div class="pricing-page">
     <PriceCard/>
-    <Form/>
+    <!--<Form/>-->
      </div>
   </template>
   
