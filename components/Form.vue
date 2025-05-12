@@ -10,6 +10,7 @@ const schema = z.object({
     name: z.string().min(2, "Must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
     phone: z.string().refine(validator.isMobilePhone, "Invalid phone number"),
+    plan: z.string().plan("Please select a plan"),
     message: z.string().min(10, "Must be at least 10 characters"),
     subject: z.string().min("Subject required"),
     access_key: z.string().min("Access key is required"),
@@ -21,6 +22,7 @@ const state = reactive({
     name: "",
     email: "",
     phone:"",
+    plan:"",
     message: "",
 });
 
@@ -65,6 +67,10 @@ async function onSubmit(event) {
         <UFormField label="phone" name="phone" type="phone">
             <UInput v-model="state.phone" />
         </UFormField> 
+        <div class="price-plan">
+            <UCheckbox indicator="start" variant="card" v-model="state.plan" default-value label="Check me" />
+            <UCheckbox indicator="start" variant="card" v-model="state.plan" default-value label="Check me" />
+        </div>
         <UFormField label="Message" name="message">
             <UTextarea v-model="state.message" />
         </UFormField>
