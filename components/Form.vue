@@ -1,10 +1,15 @@
 <script setup>
 import { z } from "zod";
+import validator from "validator";
+const result = ref("");
+const status = ref("");
+
+const isSubmitted = ref(false)
 
 const schema = z.object({
     name: z.string().min(2, "Must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
-    phone: z.string().email("Invalid phone numbers"),
+    phone: z.string().refine(validator.isMobilePhone, "Invalid phone number"),
     message: z.string().min(10, "Must be at least 10 characters"),
     subject: z.string().min("Subject required"),
     access_key: z.string().min("Access key is required"),
@@ -12,7 +17,7 @@ const schema = z.object({
 
 const state = reactive({
     access_key: "3684acc7-2c29-4acb-b42b-42fb1a2baed9",
-    subject: `${name} wants to apply for S-salsa.`,
+    subject: "Sign-up for Salsa.",
     name: "",
     email: "",
     phone:"",
@@ -20,66 +25,57 @@ const state = reactive({
 });
 
 async function onSubmit(event) {
-    result.value = "Please wait...";
     try {
         const response = await $fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: form.value,
+            body: JSON.stringify(state),
         });
 
-        console.log(response); // You can remove this line if you don't need it
-
+        console.log(response);
+        await new Promise(resolve => setTimeout(resolve, 1000))
         result.value = response.message;
 
         if (response.status === 200) {
             status.value = "success";
+            isSubmitted.value = true;
+
         } else {
-            console.log(response); // Log for debugging, can be removed
             status.value = "error";
         }
     } catch (error) {
-        console.log(error); // Log for debugging, can be removed
+        console.log(error);
         status.value = "error";
         result.value = "Something went wrong!";
     } finally {
-        // Reset form after submission
-        form.value.name = "";
-        form.value.email = "";
-        form.value.phone = "";
-        form.value.message = "";
-
-        // Clear result and status after 5 seconds
-        setTimeout(() => {
-            result.value = "";
-            status.value = "";
-        }, 5000);
+        isSubmitted.value = true;
     }
 }
 </script>
 
 <template>
-    <UForm :schema="schema" :state="state" class="form-container" @submit="onSubmit">
-        <UFormGroup label="Name" name="name">
-            <p>Name</p>
-            <UInput v-model="state.name" class="input"/>
-        </UFormGroup>
-
-        <UFormGroup label="Email" name="email" >
-            <p>E-mail</p>
+     <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="form">
+        <UForm :schema="schema" :state="state" class="form" @submit="onSubmit">
+        <UFormField label="Name" name="name">
+            <UInput v-model="state.name"/>
+        </UFormField>
+        <UFormField label="Email" name="email" type="email">
             <UInput v-model="state.email" />
-        </UFormGroup>
-        <UFormGroup label="Email" name="email">
-            <p>Phone-number</p>
+        </UFormField>
+        <UFormField label="phone" name="phone" type="phone">
             <UInput v-model="state.phone" />
-        </UFormGroup>
-        <UFormGroup label="Message" name="message">
-            <p>Message</p>
-            <UTextarea v-model="state.message" type="text" />
-        </UFormGroup>
-
+        </UFormField> 
+        <UFormField label="Message" name="message">
+            <UTextarea v-model="state.message" />
+        </UFormField>
         <UButton class="form-button" type="submit"> Submit </UButton>
     </UForm>
+     </form>
+    
+     <div v-else class="success-animation">
+        <Icon name="prime-check-circle" size="20em" class="success-icon animate__animated animate__backInDown animate__tada"></Icon>
+        <h2>Form successfully send!</h2>
+    </div>
 </template>
 
 <style lang="scss" scoped></style>

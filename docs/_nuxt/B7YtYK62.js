@@ -1,1 +1,0 @@
-import{_ as t}from"./CnM62Ar-.js";import{h as s,V as a,c as _,b as c,S as n,o as r,_ as m}from"./CJhmJkXh.js";import"./DKDBh8_E.js";const p={class:"home-page"},d=s({__name:"custom",setup(u){return a(),(e,f)=>{const o=t;return r(),_("div",p,[c(o,{class:"header"}),n(e.$slots,"default",{},void 0,!0)])}}}),v=m(d,[["__scopeId","data-v-f083f00b"]]);export{v as default};
