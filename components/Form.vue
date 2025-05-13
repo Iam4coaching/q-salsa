@@ -1,12 +1,15 @@
-<script setup>
+<script setup lang="ts">
+import { ref, reactive, watch } from "vue";
 import { z } from "zod";
 import validator from "validator";
-const result = ref("");
-const status = ref("");
 
+// Reactive form state
+const result = ref < string > ("");
+const status = ref < "success" | "error" | "" > ("");
+const isSubmitted = ref(false);
+const errors = reactive<Record<string, string>>({});
 
-const isSubmitted = ref(false)
-
+// Define the schema using Zod
 const schema = z.object({
     name: z.string().min(2, "Must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
@@ -17,37 +20,59 @@ const schema = z.object({
     access_key: z.string().min(1, "Access key is required"),
 });
 
-const state = reactive({
+// Define the form state using a TypeScript type inferred from the schema
+type FormState = z.infer<typeof schema>;
+
+const state = reactive < FormState > ({
     access_key: "3684acc7-2c29-4acb-b42b-42fb1a2baed9",
     subject: "Sign-up for Salsa.",
     name: "",
     email: "",
-    phone:"",
-    plan:"",
+    phone: "",
+    plan: "",
     message: "",
 });
 
-async function onSubmit(event) {
+watch(() => state.plan, (newVal) => {
+    if (newVal) {
+        errors.plan = "";
+    }
+});
+async function onSubmit(event: Event) {
+    watch(
+        () => state.plan,
+        (newVal) => {
+            console.log("Plan changed to:", newVal);
+        }
+    );
+    const validation = schema.safeParse(state);
+    errors.plan = ""; // Clear previous errors
+    if (!validation.success) {
+        const formatted = validation.error.format();
+        errors.plan = formatted.plan?._errors?.[0] || "";
+        status.value = "error";
+        result.value = "Validation failed!";
+        return;
+    }
     try {
-        const response = await $fetch("https://api.web3forms.com/submit", {
+        const response: { status: number; message: string } = await $fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(state),
         });
-        console.log(state.plan)
-        console.log(response);
-        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         result.value = response.message;
 
         if (response.status === 200) {
             status.value = "success";
             isSubmitted.value = true;
-
         } else {
             status.value = "error";
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
         status.value = "error";
         result.value = "Something went wrong!";
     } finally {
@@ -57,43 +82,45 @@ async function onSubmit(event) {
 </script>
 
 <template>
-    
-     <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="form">
-        <UForm :schema="schema" :state="state" @submit="onSubmit">
-        <UFormField label="Name" name="name">
-            <UInput v-model="state.name"/>
-        </UFormField>
-        <UFormField label="Email" name="email" type="email">
-            <UInput v-model="state.email" />
-        </UFormField>
-        <UFormField label="phone" name="phone" type="phone">
-            <UInput v-model="state.phone" />
-        </UFormField> 
-        <UFormField label="Plan" name="plan">
-        <URadioGroup
-            v-model="state.plan"
-            :items="[
-            { label: '1 Class - $10', value: 'basic' },
-            { label: '10 Classes - $100', value: 'pro' }
-            ]"
-            indicator="hidden"
-            orientation="horizontal"
-            size="xl"
-            color="primary"
-            variant="card"
-        />
-        </UFormField>
-        <UFormField label="Message" name="message">
-            <UTextarea v-model="state.message" />
-        </UFormField>
-        <UButton class="form-button" type="submit"> Submit </UButton>
-    </UForm>
-     </form>
-    
-     <div v-else class="success-animation">
-        <Icon name="prime-check-circle" size="20em" class="success-icon animate__animated animate__backInDown animate__tada"></Icon>
-        <h2>Form successfully send!</h2>
+    <form @submit.prevent="onSubmit" v-if="!isSubmitted" class="form">
+
+        <label>Plan</label>
+        <div class="plan-button-group">
+            <label :class="['plan-button', { active: state.plan === 'basic' }]">
+                <input type="radio" value="basic" v-model="state.plan" name="plan" class="hidden-radio" />
+                1 Class - $10
+            </label>
+
+            <label :class="['plan-button', { active: state.plan === 'pro' }]">
+                <input type="radio" value="pro" v-model="state.plan" name="plan" class="hidden-radio" />
+                10 Classes - $100
+            </label>
+        </div>
+        <p v-if="errors.plan" class="error-message">{{ errors.plan }}</p>
+
+        <label for="name">Name</label>
+        <input id="name" type="text" v-model="state.name" class="input-form" required />
+
+        <label for="email">Email</label>
+        <input id="email" type="email" v-model="state.email" class="input-form" required />
+
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" v-model="state.phone" class="input-form" required />
+        <label for="message">Message</label>
+        <textarea id="message" v-model="state.message" class="input-form" required></textarea>
+
+        <button type="submit" class="form-button">
+            Submit
+        </button>
+        <div class="h-captcha" data-captcha="true"></div>
+    </form>
+
+    <div v-else class="success-animation">
+        <Icon name="prime-check-circle" size="20em"
+            class="success-icon animate__animated animate__backInDown animate__tada" />
+        <h2>Form successfully sent!</h2>
     </div>
 </template>
+  
 
 <style lang="scss" scoped></style>
