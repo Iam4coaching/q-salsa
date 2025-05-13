@@ -390,6 +390,11 @@ textarea{
   font-size: large;
   color: $header-bg;
 }
+RadioGroup{
+  border: none;
+  width:100%;
+  display: flex;
+}
 
 .form-button{
   border: none;

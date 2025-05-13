@@ -4,16 +4,17 @@ import validator from "validator";
 const result = ref("");
 const status = ref("");
 
+
 const isSubmitted = ref(false)
 
 const schema = z.object({
     name: z.string().min(2, "Must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
     phone: z.string().refine(validator.isMobilePhone, "Invalid phone number"),
-    plan: z.string().plan("Please select a plan"),
+    plan: z.string().min(1, "Please select a plan"),
     message: z.string().min(10, "Must be at least 10 characters"),
-    subject: z.string().min("Subject required"),
-    access_key: z.string().min("Access key is required"),
+    subject: z.string().min(1, "Subject required"),
+    access_key: z.string().min(1, "Access key is required"),
 });
 
 const state = reactive({
@@ -33,7 +34,7 @@ async function onSubmit(event) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(state),
         });
-
+        console.log(state.plan)
         console.log(response);
         await new Promise(resolve => setTimeout(resolve, 1000))
         result.value = response.message;
@@ -56,8 +57,9 @@ async function onSubmit(event) {
 </script>
 
 <template>
+    
      <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="form">
-        <UForm :schema="schema" :state="state" class="form" @submit="onSubmit">
+        <UForm :schema="schema" :state="state" @submit="onSubmit">
         <UFormField label="Name" name="name">
             <UInput v-model="state.name"/>
         </UFormField>
@@ -67,10 +69,20 @@ async function onSubmit(event) {
         <UFormField label="phone" name="phone" type="phone">
             <UInput v-model="state.phone" />
         </UFormField> 
-        <div class="price-plan">
-            <UCheckbox indicator="start" variant="card" v-model="state.plan" default-value label="Check me" />
-            <UCheckbox indicator="start" variant="card" v-model="state.plan" default-value label="Check me" />
-        </div>
+        <UFormField label="Plan" name="plan">
+        <URadioGroup
+            v-model="state.plan"
+            :items="[
+            { label: '1 Class - $10', value: 'basic' },
+            { label: '10 Classes - $100', value: 'pro' }
+            ]"
+            indicator="hidden"
+            orientation="horizontal"
+            size="xl"
+            color="primary"
+            variant="card"
+        />
+        </UFormField>
         <UFormField label="Message" name="message">
             <UTextarea v-model="state.message" />
         </UFormField>
