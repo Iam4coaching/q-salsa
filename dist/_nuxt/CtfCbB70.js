@@ -1,0 +1,1 @@
+import{_ as t}from"./CppZlgF2.js";import{h as s,V as a,c as _,b as c,S as n,o as r,_ as m}from"./RscCctCv.js";import"./CAl5Zat9.js";const p={class:"home-page"},d=s({__name:"custom",setup(u){return a(),(e,l)=>{const o=t;return r(),_("div",p,[c(o,{class:"header"}),n(e.$slots,"default",{},void 0,!0)])}}}),v=m(d,[["__scopeId","data-v-bf2d41e2"]]);export{v as default};

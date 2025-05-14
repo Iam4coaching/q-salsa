@@ -2,49 +2,12 @@
 import { ref, reactive, watch } from "vue";
 import { z } from "zod";
 import validator from "validator";
-import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
 
 // Reactive form state
 const result = ref < string > ("");
 const status = ref < "success" | "error" | "" > ("");
 const isSubmitted = ref(false);
 const errors = reactive<Record<string, string>>({});
-const isLoading = ref(false);
-
-// hCaptcha site key
-const hcaptchaToken = ref("");
-const hcaptchaVerified = ref(false);
-const hcaptchaRef = ref<InstanceType<typeof VueHcaptcha> | null>(null);
-
-function onCaptchaVerified(token: string) {
-  hcaptchaToken.value = token;
-  hcaptchaVerified.value = true;
-}
-
-function onCaptchaExpired() {
-  hcaptchaToken.value = "";
-  hcaptchaVerified.value = false;
-}
-
-function resetForm() {
-  // Reset form fields
-  state.name = "";
-  state.email = "";
-  state.phone = "";
-  state.plan = "";
-  state.message = "";
-
-  // Reset other state
-  errors.plan = "";
-  result.value = "";
-  status.value = "";
-  isSubmitted.value = false;
-
-  // Reset captcha
-  hcaptchaToken.value = "";
-  hcaptchaVerified.value = false;
-  hcaptchaRef.value?.reset();
-}
 
 // Define the schema using Zod
 const schema = z.object({
@@ -75,62 +38,46 @@ watch(() => state.plan, (newVal) => {
         errors.plan = "";
     }
 });
-
 async function onSubmit(event: Event) {
-  if (!hcaptchaVerified.value || !hcaptchaToken.value) {
-    status.value = "error";
-    result.value = "Please complete the CAPTCHA.";
-    return;
-  }
-
-  const validation = schema.safeParse(state);
-  errors.plan = ""; // Clear previous errors
-  if (!validation.success) {
-    const formatted = validation.error.format();
-    errors.plan = formatted.plan?._errors?.[0] || "";
-    status.value = "error";
-    result.value = "Validation failed!";
-    return;
-  }
-
-  isLoading.value = true; // Start loading
-
-  const payload = {
-    ...state,
-    "h-captcha-response": hcaptchaToken.value,
-  };
-
-  try {
-    const response: { status: number; message: string } = await $fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    result.value = response.message;
-
-    if (response.status === 200) {
-      status.value = "success";
-      isSubmitted.value = true;
-
-      setTimeout(() => {
-        resetForm();
-      }, 4000); // Wait for animation + 3s
-    } else {
-      status.value = "error";
+    watch(
+        () => state.plan,
+        (newVal) => {
+            console.log("Plan changed to:", newVal);
+        }
+    );
+    const validation = schema.safeParse(state);
+    errors.plan = ""; // Clear previous errors
+    if (!validation.success) {
+        const formatted = validation.error.format();
+        errors.plan = formatted.plan?._errors?.[0] || "";
+        status.value = "error";
+        result.value = "Validation failed!";
+        return;
     }
-  } catch (error) {
-    console.error(error);
-    status.value = "error";
-    result.value = "Something went wrong!";
-  } finally {
-    isLoading.value = false;
-    hcaptchaVerified.value = false;
-    hcaptchaToken.value = "";
-    hcaptchaRef.value?.reset();
-  }
+    try {
+        const response: { status: number; message: string } = await $fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(state),
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        result.value = response.message;
+
+        if (response.status === 200) {
+            status.value = "success";
+            isSubmitted.value = true;
+        } else {
+            status.value = "error";
+        }
+    } catch (error) {
+        console.error(error);
+        status.value = "error";
+        result.value = "Something went wrong!";
+    } finally {
+        isSubmitted.value = true;
+    }
 }
 </script>
 
@@ -162,21 +109,10 @@ async function onSubmit(event: Event) {
         <label for="message">Message</label>
         <textarea id="message" v-model="state.message" class="input-form" required></textarea>
 
-
-        <vue-hcaptcha
-            ref="hcaptchaRef"
-            sitekey="04cefc14-6f78-4672-8df4-5c8eedd8f9de"
-            @verify="onCaptchaVerified"
-            @expired="onCaptchaExpired"
-        /> 
-   <button
-        type="submit"
-        class="form-button"
-        :disabled="!hcaptchaVerified || isLoading"
-        >
-        <span v-if="isLoading" class="spinner"></span>
-        <span v-else>Submit</span>
-    </button>
+        <button type="submit" class="form-button">
+            Submit
+        </button>
+        <div class="h-captcha" data-captcha="true"></div>
     </form>
 
     <div v-else class="success-animation">
@@ -185,3 +121,6 @@ async function onSubmit(event: Event) {
         <h2>Form successfully sent!</h2>
     </div>
 </template>
+  
+
+<style lang="scss" scoped></style>
