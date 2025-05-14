@@ -4,11 +4,12 @@ $hover-color: #58AA0E;
 $nav-link-color: white;
 $mobile-breakpoint: 768px;
 
+/*
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+}*/
 
 
 body, html {
@@ -36,6 +37,9 @@ body, html {
 }
 
 .main-page{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   padding: 1em;
   @media (max-width: $mobile-breakpoint) {
     padding:0.5em;
@@ -119,6 +123,9 @@ header {
 
 //home page
 main {
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   display:flex;
   position: relative;
   width: 100%;
@@ -231,6 +238,9 @@ main {
 
 //CSSS for the homepage footer
 .home-footer{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   bottom:0;
   position: sticky;
   align-items: center;
@@ -279,6 +289,9 @@ main {
 
 //CSS for regular Footer
 footer {
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   margin-top: auto;
   padding: 3%;
   display: flex;
@@ -336,6 +349,7 @@ footer {
 
   }
 //CSS for price card
+/*
   .pricing-page{
     display: flex;
     flex-direction: column;
@@ -363,19 +377,54 @@ footer {
       margin: 2em;
     }
   }
-
+*/
 //CSS for form
-input{
+
+.input-form {
   width: 100%;
+  box-sizing: border-box;
+  font-family: 'Kanit';
+  font-size: large;
+  color: $header-bg;
+  width: 100% ;
   padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid $header-bg;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: 'Kanit';
-    font-size: large;
-    color:$header-bg;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.plan-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.plan-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid $header-bg;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: $header-bg;
+  color: #ccc;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.plan-button:hover {
+  border-color: $hover-color;
+}
+
+.plan-button.active {
+  background-color:$hover-color; 
+  border-color: $hover-color;
+  color: white;
+}
+
+.hidden-radio {
+  display: none;
 }
 
 textarea{
@@ -409,6 +458,24 @@ textarea{
     background-color: $hover-color;
   }
 }
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+}
+
+.success-animation{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color:$header-bg;
+  .succes-icon{
+    background-color: $header-bg;
+    
+  }
+}
+
   //animation  
 @keyframes gradient {
   0% {
