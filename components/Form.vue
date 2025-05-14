@@ -168,6 +168,10 @@ async function onSubmit(event: Event) {
             sitekey="04cefc14-6f78-4672-8df4-5c8eedd8f9de"
             @verify="onCaptchaVerified"
             @expired="onCaptchaExpired"
+            data-theme="light"
+            data-size="normal"
+            data-callback="onCaptchaSuccess">
+    </vue-hcaptcha>
         /> 
    <button
         type="submit"
