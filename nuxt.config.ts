@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
    app: {
     baseURL: '/q-salsa/',
-    cdnURL: '/q-salsa/',  
+    cdnURL: '/q-salsa/' , 
     head: {
       title: 'Q-Salsa', // default fallback title
       htmlAttrs: {
