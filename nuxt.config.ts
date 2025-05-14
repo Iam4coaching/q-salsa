@@ -1,51 +1,53 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
+
   nitro: {
     preset: 'static',
     output: {
-      publicDir: 'docs',
-    },
+      publicDir: 'docs'  // ✅ THIS is the correct way to set output dir
+    }
   },
-   app: {
+
+  app: {
     baseURL: '/q-salsa/',
-    cdnURL: '/q-salsa/' , 
+    cdnURL: '/q-salsa/',
     head: {
-      title: 'Q-Salsa', // default fallback title
+      title: 'Q-Salsa',
       htmlAttrs: {
         lang: 'en',
       },
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/q-salsa/favicon.ico' },
       ],
-      // update Nuxt defaults
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     }
   },
+
   devtools: { enabled: true },
+
   components: [
     {
       path: '~/components',
-      pathPrefix: false,    },
-    ],
-    css: [
-      'animate.css/animate.min.css',
-      '@/assets/scss/main.scss'
-    ],
+      pathPrefix: false,
+    },
+  ],
+
+  css: [
+    'animate.css/animate.min.css',
+    '@/assets/scss/main.scss'
+  ],
+
   image: {
     format: ['png'],
     dir: 'assets/Images',
-},
+  },
 
   vite: {
-    plugins: [
-    ],
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "~/assets/scss/_vars.scss" as * ;',
+          additionalData: '@use "~/assets/scss/_vars.scss" as *;',
         },
       },
     },
@@ -64,5 +66,4 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
   ]
-
 })
