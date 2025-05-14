@@ -3,12 +3,14 @@ import { defineContentConfig, defineCollection } from '@nuxt/content'
 export default defineNuxtConfig({
   ssr: true,
   nitro: {
+    preset: 'static',
     output: {
       publicDir: 'docs',
     },
   },
    app: {
     baseURL: '/q-salsa/',
+    cdnURL: '/q-salsa/',  
     head: {
       title: 'Q-Salsa', // default fallback title
       htmlAttrs: {
