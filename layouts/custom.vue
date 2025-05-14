@@ -13,7 +13,7 @@ const route = useRoute()
 .home-page {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden; // Only hide horizontal overflow // Prevents scroll
+  overflow: hidden; // Only hide horizontal overflow // Prevents scroll
   position: relative;
 }
 </style>

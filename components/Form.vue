@@ -2,8 +2,7 @@
 import { ref, reactive, watch } from "vue";
 import { z } from "zod";
 import validator from "validator";
-
-//import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
+import VueHcaptcha from '@hcaptcha/vue3-hcaptcha';
 
 // Reactive form state
 const result = ref < string > ("");
@@ -12,7 +11,6 @@ const isSubmitted = ref(false);
 const errors = reactive<Record<string, string>>({});
 const isLoading = ref(false);
 
-/*
 // hCaptcha site key
 const hcaptchaToken = ref("");
 const hcaptchaVerified = ref(false);
@@ -27,7 +25,7 @@ function onCaptchaExpired() {
   hcaptchaToken.value = "";
   hcaptchaVerified.value = false;
 }
-*/
+
 function resetForm() {
   // Reset form fields
   state.name = "";
@@ -42,12 +40,10 @@ function resetForm() {
   status.value = "";
   isSubmitted.value = false;
 
-  /*
   // Reset captcha
   hcaptchaToken.value = "";
   hcaptchaVerified.value = false;
   hcaptchaRef.value?.reset();
-  */
 }
 
 // Define the schema using Zod
@@ -81,12 +77,12 @@ watch(() => state.plan, (newVal) => {
 });
 
 async function onSubmit(event: Event) {
- /* if (!hcaptchaVerified.value || !hcaptchaToken.value) {
+  if (!hcaptchaVerified.value || !hcaptchaToken.value) {
     status.value = "error";
     result.value = "Please complete the CAPTCHA.";
     return;
   }
-*/
+
   const validation = schema.safeParse(state);
   errors.plan = ""; // Clear previous errors
   if (!validation.success) {
@@ -99,17 +95,16 @@ async function onSubmit(event: Event) {
 
   isLoading.value = true; // Start loading
 
-
   const payload = {
     ...state,
-    //"h-captcha-response": hcaptchaToken.value,
+    "h-captcha-response": hcaptchaToken.value,
   };
 
   try {
     const response: { status: number; message: string } = await $fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      //body: JSON.stringify(payload),
+      body: JSON.stringify(payload),
     });
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -132,11 +127,9 @@ async function onSubmit(event: Event) {
     result.value = "Something went wrong!";
   } finally {
     isLoading.value = false;
-    /*
     hcaptchaVerified.value = false;
     hcaptchaToken.value = "";
     hcaptchaRef.value?.reset();
-    */
   }
 }
 </script>
@@ -169,21 +162,17 @@ async function onSubmit(event: Event) {
         <label for="message">Message</label>
         <textarea id="message" v-model="state.message" class="input-form" required></textarea>
 
-<!--
+
         <vue-hcaptcha
             ref="hcaptchaRef"
             sitekey="04cefc14-6f78-4672-8df4-5c8eedd8f9de"
             @verify="onCaptchaVerified"
             @expired="onCaptchaExpired"
-            data-theme="light"
-            data-size="normal"
-            data-callback="onCaptchaSuccess"> /> 
-    </vue-hcaptcha>-->
-       
+        /> 
    <button
         type="submit"
         class="form-button"
-        :disabled="isLoading"
+        :disabled="!hcaptchaVerified || isLoading"
         >
         <span v-if="isLoading" class="spinner"></span>
         <span v-else>Submit</span>
