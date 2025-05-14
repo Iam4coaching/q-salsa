@@ -99,12 +99,12 @@ async function onSubmit(event: Event) {
 
   isLoading.value = true; // Start loading
 
-  /*
+
   const payload = {
     ...state,
-    "h-captcha-response": hcaptchaToken.value,
+    //"h-captcha-response": hcaptchaToken.value,
   };
-*/
+
   try {
     const response: { status: number; message: string } = await $fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -177,9 +177,9 @@ async function onSubmit(event: Event) {
             @expired="onCaptchaExpired"
             data-theme="light"
             data-size="normal"
-            data-callback="onCaptchaSuccess">
+            data-callback="onCaptchaSuccess"> /> 
     </vue-hcaptcha>-->
-        /> 
+       
    <button
         type="submit"
         class="form-button"

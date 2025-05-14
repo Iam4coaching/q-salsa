@@ -1,1 +1,0 @@
-import{_ as t}from"./BZifPzN_.js";import{h as s,V as a,c,b as _,S as n,o as r,_ as m}from"./CJ1FjSxV.js";import"./C0SF2lN5.js";const p={class:"home-page"},d=s({__name:"custom",setup(u){return a(),(e,l)=>{const o=t;return r(),c("div",p,[_(o,{class:"header"}),n(e.$slots,"default",{},void 0,!0)])}}}),v=m(d,[["__scopeId","data-v-cc1d86e6"]]);export{v as default};
