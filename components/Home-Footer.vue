@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <template>
     <img src="/Images/Qsalsa_Logo.png"  alt="Qsalsa Logo" class="footer-logo animate__animated animate__fadeInLeft">
         <div class="home-footer">
