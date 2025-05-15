@@ -1,5 +1,7 @@
+import { defineNuxtConfig } from "nuxt/config";
+
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   nitro: {
     preset: 'static',
     output: {
@@ -28,12 +30,14 @@ export default defineNuxtConfig({
     'animate.css/animate.min.css',
     '@/assets/scss/main.scss'
   ],
-
+  alias:{
+      "extends": "../../../tsconfig.base.json"
+    },
   image: {
     format: ['png'],
     dir: 'assets/Images',
   },
-
+ 
   vite: {
     css: {
       preprocessorOptions: {
@@ -47,6 +51,22 @@ export default defineNuxtConfig({
   ui: {
     theme: {
       colors: ['primary']
+    }
+  },
+
+ content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 3, // include h3 headings
+        },
+        // Object syntax can be used to override default options
+        rehypePlugins: {
+          'rehype-figure': {
+
+          }
+        },
+      }
     }
   },
 
