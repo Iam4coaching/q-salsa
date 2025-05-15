@@ -24,7 +24,7 @@ const schema = z.object({
 type FormState = z.infer<typeof schema>;
 
 const state = reactive < FormState > ({
-    access_key: "3684acc7-2c29-4acb-b42b-42fb1a2baed9",
+    access_key: "68150a9d-cc42-4d33-85cf-bc2558ae5957",
     subject: "Sign-up for Salsa.",
     name: "",
     email: "",
