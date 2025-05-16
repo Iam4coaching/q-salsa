@@ -83,8 +83,6 @@ async function onSubmit(event: Event) {
 
 <template>
     <form @submit.prevent="onSubmit" v-if="!isSubmitted" class="form">
-
-        <label>Plan</label>
         <div class="plan-button-group">
             <label :class="['plan-button', { active: state.plan === 'basic' }]">
                 <input type="radio" value="basic" v-model="state.plan" name="plan" class="hidden-radio" />

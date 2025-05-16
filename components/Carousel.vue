@@ -24,6 +24,13 @@ const items = [
 
     <div class="content-overlay animate__animated animate__slideInLeft">
       <img src="/Images/Qsalsa_Logo.png" alt="Qsalsa Logo" class="main-logo animate__animated animate__fadeInLeft">
+        <div class="intro-bg"></div>
+        <div class="intro-txt">
+        <h1>Do you want to swing those hips to salsa music?</h1>
+        <p>At Q-salsa rotterdam in collaboration with Ketelbinkie you can dance salsa in a safe environment.
+        We are a multicultural team and offer lessons for the LHBTI community and allies.</p>
+        <p>We dance gender free, i.e. we focus on the role division "leader and follower" and not on the role division man/woman.</p>
+      </div>
     </div>
   </div>
 </template>
