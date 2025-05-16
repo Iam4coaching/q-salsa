@@ -1,33 +1,17 @@
 <script setup lang="ts">
-import { queryCollection } from '@nuxt/content'
-import { useRoute } from 'vue-router'
+const { data: posts } = await useAsyncData('blog', () => queryCollection('blog').all())
 
-const route = useRoute()
-
-interface Event {
-  _path: string
-  title: string
-  date: string
-  adress: string
-  description: string
-  img: string
-}
-
-const { data: events } = await useAsyncData<Event[]>('events', () =>
-  queryCollection('events').path(route.path).find()
-)
 
 </script>
 
 <template>
-<template  v-if="events && events.length">
+<template  v-if="posts">
   <div>
     <h1>Events</h1>
     <ul>
-      <li v-for="event in events" :key="event._path">
-        <NuxtLink :to="event._path">
-          {{ event.title }}
-        </NuxtLink>
+       <li v-for="post in posts" :key="post.id">
+        {{ console.log(post) }}
+        <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
       </li>
     </ul>
   </div>

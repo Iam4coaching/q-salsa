@@ -204,8 +204,20 @@ main {
     z-index: 10;
     color: $header-bg;
     text-align: center;
-    padding: 2rem;
-
+    padding: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    .intro-txt{
+      text-align: end;
+      padding:1em;
+      border-radius: 10px;
+      color: white;
+      text-shadow:
+        0.1em 0 $header-bg,
+        0 0.1em $header-bg,
+        -0.1em 0 $header-bg,
+        0 -0.1em $header-bg;
+    }
     h1 {
       font-size: 2.5rem;
 
@@ -220,6 +232,7 @@ main {
     }
 
     @media (max-width: $mobile-breakpoint) {
+          flex-direction: column;
       h1 {
         font-size: 1.75rem;
       }
@@ -232,6 +245,10 @@ main {
         width: 80%;
         height: 80%;
       }
+       .intro-txt{
+        width: full;
+        text-align: center;
+       }
     }
   }
 }
@@ -250,7 +267,7 @@ main {
   width: 100%;
   display: block;
   flex-direction: row;
-  height: 10rem;
+  height: 8rem;
   background: linear-gradient(to right, #f56565, #68d391, #805ad5);
   background-size: 180% 180%;
   animation: gradient 6s ease-in-out infinite alternate;
