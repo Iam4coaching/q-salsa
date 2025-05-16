@@ -41,6 +41,7 @@ body, html {
     padding: 0;
     box-sizing: border-box;
   padding: 1em;
+  overflow-x: hidden;
   @media (max-width: $mobile-breakpoint) {
     padding:0.5em;
   }
@@ -366,37 +367,8 @@ footer {
     }
 
   }
-//CSS for price card
-/*
-  .pricing-page{
-    display: flex;
-    flex-direction: column;
-    padding: 2em;
-    margin: 2em;
 
-    @media (max-width: $mobile-breakpoint) {
-
-    }
-  }
-
-  .price-card
-  {
-    display: flex;
-    flex-direction: row;
-    @media (max-width: $mobile-breakpoint) {
-      flex-direction: column; 
-    }
-    .container{
-      background-color: $header-bg;
-      background: linear-gradient(177deg,rgba(64, 127, 0, 1) 0%, rgba(88, 170, 14, 1) 100%);
-      border-radius: 10px;
-      color: white;
-      padding: 5em;
-      margin: 2em;
-    }
-  }
-*/
-//CSS for form
+  //CSS for form
 
 .input-form {
   width: 100%;
@@ -498,6 +470,47 @@ textarea{
   100% { transform: rotate(360deg); }
 }
 
+//CSS for the event list
+
+.list {
+    /* Remove HTML defaults */
+    list-style-type: none;
+    margin: 0; padding: 0;
+}
+
+.event-card{
+  display: flex;
+  flex-direction: row;
+	flex-wrap: wrap;
+  max-width: 50rem;
+	width: 100%;
+  border-radius: 0.8rem;
+	overflow: hidden;
+  border: 0.1rem solid;
+  border-color: $header-bg;
+  stroke: $header-bg 2px;
+  background-color: white;
+  margin: 1 em;
+  .thumbnail-replacement{
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      flex: 1 1 200px;
+      outline: 0.5rem solid;
+      background-color: $header-bg;
+  }
+  a{
+    color: $header-bg;
+    text-decoration: none;
+
+  }
+    .event-card-text{
+  padding: min(2rem, 5vw) min(2rem, 5vw) min(2.5rem, 5vw);
+	flex: 1 0 50%;
+    }
+    .event-card-text * + * {
+	margin: min(1.5rem, 2.5vw) 0 0 0;
+}
+}
 .error-message {
   color: red;
   font-size: 0.9em;

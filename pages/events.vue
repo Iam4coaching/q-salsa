@@ -1,17 +1,27 @@
 <script setup lang="ts">
-const { data: posts } = await useAsyncData('blog', () => queryCollection('blog').all())
 
+const { data } = await useAsyncData('events', () =>
+  queryCollection('events').all()
+)
 
 </script>
 
+
 <template>
-<template  v-if="posts">
+<template  v-if="data">
   <div>
     <h1>Events</h1>
-    <ul>
-       <li v-for="post in posts" :key="post.id">
-        {{ console.log(post) }}
-        <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
+    <ul class="list">
+       <li class="event-card" v-for="event in data" :key="event.id">
+        <NuxtLink :key="event._path" :to="event.path">
+          <div class="thumbnail-replacement"></div>
+          <div class="event-card-text">
+             <h2>{{ event.title }}</h2>
+             <span>{{ event.date }}</span>
+             <span>{{ event.starttime }} - {{ event.endtime }}</span>
+             <span>{{ event.adress }}</span>
+          </div>
+         </NuxtLink>
       </li>
     </ul>
   </div>

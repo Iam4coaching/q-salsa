@@ -57,15 +57,9 @@ export default defineNuxtConfig({
  content: {
     build: {
       markdown: {
-        toc: {
+         toc: {
           depth: 3, // include h3 headings
-        },
-        // Object syntax can be used to override default options
-        rehypePlugins: {
-          'rehype-figure': {
-
-          }
-        },
+        }
       }
     }
   },
